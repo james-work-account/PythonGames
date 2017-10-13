@@ -11,6 +11,10 @@ class Blackjack:
         print(self.WelcomeMessage)
         self.playOne()
 
+        while (self.playerOneNumber <= self.playerTwoNumber <= 21):
+            raise NotImplemented
+
+
     def playOne(self):
         playerOneInput = raw_input("Player 1, your number is %d. Save your number? y/n > " % self.playerOneNumber).lower()
         if playerOneInput == "y":
@@ -49,12 +53,15 @@ class Blackjack:
         else:
             print("You both LOSE!")
         print("Thank you for playing!")
+        play_again = raw_input("Play again? (y/n)\n >>  ").lower()
+        if (play_again == "y"):
+            Blackjack()
+        else:
+            from Menu import Menu
+            Menu()
 
     def check21(self, inputNumber):
         if inputNumber > 21:
             return True
         else:
             return False
-
-
-Blackjack()

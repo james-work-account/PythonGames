@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import Blackjack
+import FizzBuzz
 import os
 
 
@@ -9,25 +11,21 @@ class Menu:
     def __init__(self):
         os.system('clear')
 
-        print "Welcome to the Games menu!\n"
-        print "Please choose the game you wish to start:"
-        print "1. Blackjack"
-        print "2. FizzBuzz"
-        print "\n0. Quit"
-        self.choice = raw_input(" >>  ")
+        print("""Welcome to the Games menu!\n
+        Please choose the game you wish to start:
+        1. Blackjack
+        2. FizzBuzz
+        \n0. Quit""".replace("  ", ""))
+        self.choice = raw_input(">>  ")
         if self.choice == '1':
-            print "Choice: 1"
-            from Blackjack import Blackjack
-            Blackjack()
+            Blackjack.Blackjack()
         elif self.choice == '2':
-            print "Choice: 2"
-            from FizzBuzz import FizzBuzz
-            FizzBuzz()
+            FizzBuzz.FizzBuzz()
         elif self.choice == '0':
-            print "Exiting menu..."
+            print("Exiting menu...")
             exit()
         else:
-            print "You did not choose wisely.\nExiting..."
+            print("You did not choose wisely.\nExiting...")
             exit()
 
 
