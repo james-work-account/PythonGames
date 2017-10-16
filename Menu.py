@@ -2,6 +2,7 @@
 
 import Blackjack
 import FizzBuzz
+import FindTheTreasure
 import os
 
 
@@ -14,12 +15,15 @@ class Menu:
         Please choose the game you wish to start:
         1. Blackjack
         2. FizzBuzz
+        3. Find The Treasure
         \n0. Quit""".replace("  ", ""))
         self.choice = raw_input(">>  ")
         if self.choice == '1':
             Blackjack.Blackjack()
         elif self.choice == '2':
             FizzBuzz.FizzBuzz()
+        elif self.choice == '3':
+            FindTheTreasure.FindTheTreasure(10, 10)
         elif self.choice == '0':
             print("Exiting menu...")
             exit()
