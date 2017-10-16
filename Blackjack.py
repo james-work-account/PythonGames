@@ -5,20 +5,15 @@ class Blackjack:
 
     WelcomeMessage = "Welcome to Blackjack!"
     ExitMessage = "Thank you for playing!"
-    playerOneNumber = 0
-    playerTwoNumber = 0
-    playerXNumber = 0
+    playerOneNumber = playerTwoNumber = playerXNumber = 0
     playerOneTurnOver = playerTwoTurnOver = False
 
     def __init__(self):
         print(self.WelcomeMessage)
-        
-        while self.playerOneTurnOver is False:
+        while not self.playerOneTurnOver:
             self.playGame(1)
-            
-        while self.playerTwoTurnOver is False:
+        while not self.playerTwoTurnOver:
             self.playGame(2)
-            
         self.calcWinner()
         print(self.ExitMessage)
         play_again = raw_input("Play again? (y/n)\n >>  ").lower()
@@ -30,7 +25,13 @@ class Blackjack:
 
 
     def playGame(self, playerNumber):
-        self.setPlayerXValue(playerNumber)
+        if playerNumber == 1:
+            self.playerXNumber = self.playerOneNumber
+        elif playerNumber == 2:
+            self.playerXNumber = self.playerTwoNumber
+        else:
+            print "ERROR: NOT A VALID PLAYER NUMBER"
+            exit()
         playerInput = raw_input("Player %d, your number is %d. Save your number? y/n > " % (playerNumber, self.playerXNumber)).lower()
         if playerInput == "y":
             self.setPlayerValue(playerNumber)
@@ -40,7 +41,7 @@ class Blackjack:
             elif playerNumber == 2:
                 self.playerTwoTurnOver = True
             else:
-                print "ERROR"
+                print "ERROR: NOT A VALID PLAYER NUMBER"
                 exit()
         else:
             self.playerXNumber += random.randint(1, 10)
@@ -53,30 +54,21 @@ class Blackjack:
                 if self.check21(self.playerTwoNumber):
                     self.playerTwoTurnOver = True
 
-    def setPlayerXValue(self, playerNumber):
-        if playerNumber == 1:
-            self.playerXNumber = self.playerOneNumber
-        elif playerNumber == 2:
-            self.playerXNumber = self.playerTwoNumber
-        else:
-            print "ERROR"
-            exit()
 
     def setPlayerValue(self, playerNumber):
         if playerNumber == 1:
             self.playerOneNumber = self.playerXNumber
         elif playerNumber == 2:
             self.playerTwoNumber = self.playerXNumber
+        else:
+            print "ERROR: NOT A VALID PLAYER NUMBER"
+            exit()
 
 
     def calcWinner(self):
-        if self.playerTwoNumber < self.playerOneNumber <= 21:
+        if self.playerTwoNumber < self.playerOneNumber <= 21 or self.playerTwoNumber > 21 >= self.playerOneNumber:
             print("Player 1 Wins!")
-        elif self.playerOneNumber < self.playerTwoNumber <= 21:
-            print("Player 2 Wins!")
-        elif self.playerTwoNumber > 21 >= self.playerOneNumber:
-            print("Player 1 Wins!")
-        elif self.playerOneNumber > 21 >= self.playerTwoNumber:
+        elif self.playerOneNumber < self.playerTwoNumber <= 21 or self.playerOneNumber > 21 >= self.playerTwoNumber:
             print("Player 2 Wins!")
         else:
             print("You both LOSE!")
