@@ -8,12 +8,12 @@ class FindTheTreasure:
     gameComplete = False
     welcomeMessage = "You have awoken in a groggy haze. Your memory is patchy, but you definitely remember seeing " \
                      "some treasure somewhere around here before you passed out...\nTry typing a direction (eg. " \
-                     "north, s, w, east, south west, ne) to look for your treasure! "
+                     "north, s, w, east, south west, ne) to look for your treasure! \n"
     exitMessage = "You have found the treasure!"
 
     def __init__(self, boardXSize=10, boardYSize=10):
         os.system('clear')
-        print(self.welcomeMessage+"\n")
+        print(self.welcomeMessage)
         self.treasurePos = [random.randint(0, boardXSize), random.randint(0, boardYSize)]
         self.generatePlayerPosition(boardXSize, boardYSize)
         while not self.gameComplete:
@@ -40,32 +40,30 @@ class FindTheTreasure:
         self.movePlayer(playerMovement)
         if playerPos == treasurePos:
             self.gameComplete = True
-        else:
-            pass
 
     def movePlayer(self, inputDir):
         if inputDir.lower() == "north" or inputDir.lower() == "n":
-            self.playerPos[0] += 1
+            self.moveXY(1, 0)
         elif inputDir.lower() == "south" or inputDir.lower() == "s":
-            self.playerPos[0] -= 1
+            self.moveXY(-1, 0)
         elif inputDir.lower() == "east" or inputDir.lower() == "e":
-            self.playerPos[1] += 1
+            self.moveXY(0, 1)
         elif inputDir.lower() == "west" or inputDir.lower() == "w":
-            self.playerPos[1] -= 1
+            self.moveXY(0, -1)
         elif inputDir.lower() == "north west" or inputDir.lower() == "nw":
-            self.playerPos[0] += 1
-            self.playerPos[1] -= 1
+            self.moveXY(1, -1)
         elif inputDir.lower() == "north east" or inputDir.lower() == "ne":
-            self.playerPos[0] += 1
-            self.playerPos[1] += 1
+            self.moveXY(1, 1)
         elif inputDir.lower() == "south west" or inputDir.lower() == "sw":
-            self.playerPos[0] -= 1
-            self.playerPos[1] -= 1
+            self.moveXY(-1, -1)
         elif inputDir.lower() == "south east" or inputDir.lower() == "se":
-            self.playerPos[0] -= 1
-            self.playerPos[1] += 1
+            self.moveXY(-1, 1)
         else:
             pass
+
+    def moveXY(self, moveX, moveY):
+        self.playerPos[0] += moveX
+        self.playerPos[1] += moveY
 
     def calcDistanceFromTreasure(self):
         if self.playerPos[0] == self.treasurePos[0]:
@@ -77,3 +75,4 @@ class FindTheTreasure:
             self.distance = float(sqrt(
                 ((self.treasurePos[0] - self.playerPos[0]) * (self.treasurePos[0] - self.playerPos[0])) +
                 ((self.treasurePos[1] - self.playerPos[1]) * (self.treasurePos[1] - self.playerPos[1]))))
+            del sqrt
