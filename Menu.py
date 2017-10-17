@@ -23,7 +23,7 @@ class Menu:
         elif self.choice == '2':
             FizzBuzz.FizzBuzz()
         elif self.choice == '3':
-            FindTheTreasure.FindTheTreasure(10, 10)
+            FindTheTreasure.FindTheTreasure()
         elif self.choice == '0':
             print("Exiting menu...")
             exit()
