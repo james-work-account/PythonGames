@@ -30,6 +30,7 @@ class Menu:
         else:
             print("You did not choose wisely.\nExiting...")
             exit()
+        Menu()
 
 
 Menu()

@@ -24,9 +24,6 @@ class FindTheTreasure:
         play_again = raw_input("Play again? (y/n)\n >>  ").lower()
         if play_again == "y":
             FindTheTreasure(boardXSize, boardYSize)
-        else:
-            from Menu import Menu
-            Menu()
 
     def generatePlayerPosition(self, boardXSize, boardYSize):
         self.playerPos = [random.randint(0, boardXSize), random.randint(0, boardYSize)]

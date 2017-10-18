@@ -8,9 +8,6 @@ class FizzBuzz():
                       self.CSLToArray(raw_input("What numbers to replace? (comma separated)\n> "), "int"))
         play_again = raw_input("Play again? (y/n)\n> ").lower()
         if play_again == "y": FizzBuzz()
-        else:
-            from Menu import Menu
-            Menu()
 
     def CSLToArray(self, CSL, type):
         splitted = CSL.split(",")

@@ -19,9 +19,6 @@ class Blackjack:
         play_again = raw_input("Play again? (y/n)\n >>  ").lower()
         if play_again == "y":
             Blackjack()
-        else:
-            from Menu import Menu
-            Menu()
 
 
     def playGame(self, playerNumber):

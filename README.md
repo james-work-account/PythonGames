@@ -42,6 +42,6 @@ as the treasure.
 ### TODO
 
 * Add option to play with custom board size for Find The Treasure from menu
-* Remove games referencing the parent class (Menu) when going back to the
-main menu
+* ~~Remove games referencing the parent class (Menu) when going back to the
+main menu~~
 * **More games!!**
