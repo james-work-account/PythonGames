@@ -10,6 +10,8 @@ class FindTheTreasure:
                      "some treasure somewhere around here before you passed out...\nTry typing a direction (eg. " \
                      "north, s, w, east, south west, ne) to look for your treasure! \n"
     exitMessage = "You have found the treasure!"
+    movementDirection = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    aliases = ["N,NORTH,UP", "E,EAST,RIGHT", "S,SOUTH,DOWN", "W,WEST,LEFT"]
 
     def __init__(self, boardXSize=10, boardYSize=10):
         os.system('clear')
@@ -30,8 +32,6 @@ class FindTheTreasure:
         self.playerPos = [random.randint(0, boardXSize), random.randint(0, boardYSize)]
         if self.playerPos == self.treasurePos:
             self.generatePlayerPosition(boardXSize, boardYSize)
-        else:
-            pass
 
     def playGame(self, treasurePos, playerPos):
         self.calcDistanceFromTreasure()
@@ -42,28 +42,14 @@ class FindTheTreasure:
             self.gameComplete = True
 
     def movePlayer(self, inputDir):
-        if inputDir.lower() == "north" or inputDir.lower() == "n":
-            self.moveXY(0, 1)
-        elif inputDir.lower() == "south" or inputDir.lower() == "s":
-            self.moveXY(0, -1)
-        elif inputDir.lower() == "east" or inputDir.lower() == "e":
-            self.moveXY(1, 0)
-        elif inputDir.lower() == "west" or inputDir.lower() == "w":
-            self.moveXY(-1, 0)
-        elif inputDir.lower() == "north west" or inputDir.lower() == "nw":
-            self.moveXY(-1, 1)
-        elif inputDir.lower() == "north east" or inputDir.lower() == "ne":
-            self.moveXY(1, 1)
-        elif inputDir.lower() == "south west" or inputDir.lower() == "sw":
-            self.moveXY(-1, -1)
-        elif inputDir.lower() == "south east" or inputDir.lower() == "se":
-            self.moveXY(1, -1)
-        else:
-            pass
+        for direction in self.aliases:
+            for alias in direction.split(","):
+                if inputDir.lower() == alias.lower():
+                    self.moveXY(self.movementDirection[self.aliases.index(direction)])
 
-    def moveXY(self, moveX, moveY):
-        self.playerPos[0] += moveX
-        self.playerPos[1] += moveY
+    def moveXY(self, moveDir):
+        self.playerPos[0] += moveDir[0]
+        self.playerPos[1] += moveDir[1]
 
     def calcDistanceFromTreasure(self):
         if self.playerPos[0] == self.treasurePos[0]:
