@@ -43,21 +43,21 @@ class FindTheTreasure:
 
     def movePlayer(self, inputDir):
         if inputDir.lower() == "north" or inputDir.lower() == "n":
-            self.moveXY(1, 0)
-        elif inputDir.lower() == "south" or inputDir.lower() == "s":
-            self.moveXY(-1, 0)
-        elif inputDir.lower() == "east" or inputDir.lower() == "e":
             self.moveXY(0, 1)
-        elif inputDir.lower() == "west" or inputDir.lower() == "w":
+        elif inputDir.lower() == "south" or inputDir.lower() == "s":
             self.moveXY(0, -1)
+        elif inputDir.lower() == "east" or inputDir.lower() == "e":
+            self.moveXY(1, 0)
+        elif inputDir.lower() == "west" or inputDir.lower() == "w":
+            self.moveXY(-1, 0)
         elif inputDir.lower() == "north west" or inputDir.lower() == "nw":
-            self.moveXY(1, -1)
+            self.moveXY(-1, 1)
         elif inputDir.lower() == "north east" or inputDir.lower() == "ne":
             self.moveXY(1, 1)
         elif inputDir.lower() == "south west" or inputDir.lower() == "sw":
             self.moveXY(-1, -1)
         elif inputDir.lower() == "south east" or inputDir.lower() == "se":
-            self.moveXY(-1, 1)
+            self.moveXY(1, -1)
         else:
             pass
 
