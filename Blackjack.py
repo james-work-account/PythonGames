@@ -1,7 +1,7 @@
 import random
 
 
-class Blackjack:
+class Blackjack(object):
 
     WelcomeMessage = "Welcome to Blackjack!"
     ExitMessage = "Thank you for playing!"
@@ -71,7 +71,8 @@ class Blackjack:
             print("You both LOSE!")
 
 
-    def check21(self, playerNumber):
+    @staticmethod
+    def check21(playerNumber):
         if playerNumber > 21:
             print("Your number is %d, which is greater than 21!" % playerNumber)
             return True

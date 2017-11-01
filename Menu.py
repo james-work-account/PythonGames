@@ -6,7 +6,7 @@ import FindTheTreasure
 import os
 
 
-class Menu:
+class Menu(object):
 
     def __init__(self):
         os.system('clear')

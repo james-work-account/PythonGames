@@ -5,7 +5,8 @@ class CurlyBoyPrinter:
         print(curlyBoy.WelcomeMessage)
         curlyBoy.curlyBoyCount(input("> "))
 
-    def curlyBoyCount(curlyBoy, curlyBoyNumber):
+    @staticmethod
+    def curlyBoyCount(curlyBoyNumber):
         print("{ " * curlyBoyNumber + "%d  C U R L Y  B O Y S" % curlyBoyNumber + " }" * curlyBoyNumber)
 
 

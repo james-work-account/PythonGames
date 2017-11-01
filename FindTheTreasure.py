@@ -1,7 +1,7 @@
 import random, os
 
 
-class FindTheTreasure:
+class FindTheTreasure(object):
     distance = 0
     treasurePos = []
     playerPos = []

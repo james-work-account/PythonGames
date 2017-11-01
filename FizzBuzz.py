@@ -1,4 +1,4 @@
-class FizzBuzz():
+class FizzBuzz(object):
     WelcomeMessage = "Welcome to FizzBuzz!"
 
     def __init__(self):
@@ -9,19 +9,21 @@ class FizzBuzz():
         play_again = raw_input("Play again? (y/n)\n> ").lower()
         if play_again == "y": FizzBuzz()
 
-    def CSLToArray(self, CSL, type):
+    @staticmethod
+    def CSLToArray(CSL, inputType):
         splitted = CSL.split(",")
         output = []
-        if type == "str":
+        if inputType == "str":
             for word in splitted:
                 output.append(str(word))
-        elif type == "int":
+        elif inputType == "int":
             for num in splitted:
                 output.append(int(num))
         return output
 
-    def FizzBuzz(self, range, strings, rules):
-        for i in range:
+    @staticmethod
+    def FizzBuzz(inputRange, strings, rules):
+        for i in inputRange:
             outputString = "[%s] " % str(i)
             for rule in rules:
                 if i % rule == 0:
