@@ -1,5 +1,7 @@
 # Games Repo
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b37e5ebc0e6344e1a16e9e235c2113a6)](https://www.codacy.com/app/james-work-account/PythonGames?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=james-work-account/PythonGames&amp;utm_campaign=Badge_Grade)
+
 ### Info
 
 This is a repo documenting various mini games I make while teaching myself Python.
