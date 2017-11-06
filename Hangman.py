@@ -6,7 +6,6 @@ class Hangman(object):
     FILE = open(DICTIONARY, "r")
     list_of_words = []
     mutable_hidden_word = []
-    static_hidden_word = ""
     count = 0
     game_complete = False
     wrong_guesses = []
@@ -41,12 +40,14 @@ class Hangman(object):
         for line in self.FILE:
             self.list_of_words.append(line)
 
+
     def take_input(self, inputLetter):
         if len(inputLetter) > 1:
             newInputLetter = raw_input("Enter a letter: >>")
             self.take_input(newInputLetter)
         else:
             self.input_letter = inputLetter
+
 
     @staticmethod
     def read_word_list_length(fileName):
@@ -56,21 +57,24 @@ class Hangman(object):
                 pass
         return i
 
+
     def get_random_word(self, listOfWords, wordListLength):
         from random import randint
         randomWord = randint(0, wordListLength-1)
         self.word_to_guess = listOfWords[randomWord].replace("\n", "")
 
+
     def create_hidden_word(self, wordToHide):
         for char in range(0, len(wordToHide)):
             self.mutable_hidden_word.append("_")
-        self.static_hidden_word = self.mutable_hidden_word
+
 
     def print_hanged_man(self):
         try:
             print self.HANGED_MAN[self.count]
         except KeyError:
             print "Dictionary key is invalid!"
+
 
     def print_wrong_guesses(self):
         if not self.wrong_guesses == []:
@@ -93,12 +97,14 @@ class Hangman(object):
             print "Congratulations, you win! It took you %d guesses to win." % self.number_of_guesses
             self.game_complete = True
 
+
     def take_player_guess(self):
         player_input = raw_input("\nInput a letter: >>  ")
         if len(player_input) > 1:
             self.take_player_guess()
         else:
             self.input_letter = player_input
+
 
     def check_player_guess(self, guess):
         if guess not in self.word_to_guess:
