@@ -3,6 +3,7 @@
 import Blackjack
 import FizzBuzz
 import FindTheTreasure
+import Hangman
 import os
 
 
@@ -16,6 +17,7 @@ class Menu(object):
         1. Blackjack
         2. FizzBuzz
         3. Find The Treasure
+        4. Hangman
         \n0. Quit""".replace("  ", ""))
         self.choice = raw_input(">>  ")
         if self.choice == '1':
@@ -24,6 +26,8 @@ class Menu(object):
             FizzBuzz.FizzBuzz()
         elif self.choice == '3':
             FindTheTreasure.FindTheTreasure()
+        elif self.choice == '4':
+            Hangman.Hangman()
         elif self.choice == '0':
             print("Exiting menu...")
             exit()
