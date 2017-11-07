@@ -25,6 +25,7 @@ class Hangman(object):
 
     def __init__(self):
         print "Welcome to Hangman!"
+        self.reset_all()
         self.add_words_to_list()
         self.get_random_word(self.list_of_words, self.read_word_list_length(self.DICTIONARY))
         self.FILE.close()
@@ -36,17 +37,22 @@ class Hangman(object):
             Hangman()
 
 
+    # SETUP FUNCTIONS
+    def reset_all(self):
+        self.word_to_guess = ""
+        self.wrong_guesses = []
+        self.mutable_hidden_word = []
+        self.game_complete = False
+        self.count = 0
+        self.word_to_guess_char_list = []
+        self.number_of_guesses = 0
+        self.input_letter = ""
+
+
     def add_words_to_list(self):
-        for line in self.FILE:
-            self.list_of_words.append(line)
-
-
-    def take_input(self, inputLetter):
-        if len(inputLetter) > 1:
-            newInputLetter = raw_input("Enter a letter: >>")
-            self.take_input(newInputLetter)
-        else:
-            self.input_letter = inputLetter
+        if not self.list_of_words:
+            for line in self.FILE:
+                self.list_of_words.append(line)
 
 
     @staticmethod
@@ -69,22 +75,11 @@ class Hangman(object):
             self.mutable_hidden_word.append("_")
 
 
-    def print_hanged_man(self):
-        try:
-            print self.HANGED_MAN[self.count]
-        except KeyError:
-            print "Dictionary key is invalid!"
-
-
-    def print_wrong_guesses(self):
-        if not self.wrong_guesses == []:
-            print "Wrong guesses: " + ", ".join(self.wrong_guesses)
-
-
+    # GAMEPLAY FUNCTIONS
     def play_game(self):
         if "_" in self.mutable_hidden_word:
             self.print_hanged_man()
-            print " ".join(self.mutable_hidden_word)
+            self.print_hidden_word()
             self.print_wrong_guesses()
             self.take_player_guess()
             self.check_player_guess(self.input_letter)
@@ -94,7 +89,10 @@ class Hangman(object):
                 print "Correct word: " + self.word_to_guess
                 self.game_complete = True
         else:
-            print "Congratulations, you win! It took you %d guesses to win." % self.number_of_guesses
+            self.print_hanged_man()
+            self.print_hidden_word()
+            print "Congratulations, you win! Your word was \"%s\". Tt took you %d guesses to win."\
+                  % (self.word_to_guess, self.number_of_guesses)
             self.game_complete = True
 
 
@@ -114,3 +112,18 @@ class Hangman(object):
             for letter in range(0, len(self.word_to_guess)):
                 if self.word_to_guess[letter] == guess:
                     self.mutable_hidden_word[letter] = guess
+
+    def print_hidden_word(self):
+        print " ".join(self.mutable_hidden_word)
+
+
+    def print_wrong_guesses(self):
+        if not self.wrong_guesses == []:
+            print "Wrong guesses: " + ", ".join(self.wrong_guesses)
+
+
+    def print_hanged_man(self):
+        try:
+            print self.HANGED_MAN[self.count]
+        except KeyError:
+            print "Dictionary key is invalid!"
