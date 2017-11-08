@@ -8,10 +8,11 @@ class FindTheTreasure(object):
     gameComplete = False
     welcomeMessage = "You have awoken in a groggy haze. Your memory is patchy, but you definitely remember seeing " \
                      "some treasure somewhere around here before you passed out...\nTry typing a direction (eg. " \
-                     "north, s, w, east, south west, ne) to look for your treasure! \n"
+                     "north, s, w, east, se, north west) to look for your treasure! \n"
     exitMessage = "You have found the treasure!"
-    movementDirection = [[0, 1], [1, 0], [0, -1], [-1, 0]]
-    aliases = ["N,NORTH,UP", "E,EAST,RIGHT", "S,SOUTH,DOWN", "W,WEST,LEFT"]
+    movementDirection = [[0, 1], [1, 0], [0, -1], [-1, 0], [1, 1], [-1, 1], [1, -1], [-1, -1]]
+    aliases = ["N,NORTH,UP", "E,EAST,RIGHT", "S,SOUTH,DOWN", "W,WEST,LEFT",
+               "NE,NORTH EAST", "NW,NORTH WEST", "SE,SOUTH EAST", "SW,SOUTH WEST"]
 
     def __init__(self, boardXSize=10, boardYSize=10):
         os.system('clear')
