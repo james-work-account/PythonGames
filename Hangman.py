@@ -63,8 +63,8 @@ class Hangman(object):
             for i, l in enumerate(f, 1):
                 pass
         return i
-    
-    
+
+
     @staticmethod
     def mk_string(word, inbetween):
         return inbetween.join(word)
