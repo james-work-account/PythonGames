@@ -1,3 +1,5 @@
+import os
+
 class Hangman(object):
     input_letter = []
     word_to_guess = []
@@ -30,6 +32,7 @@ class Hangman(object):
         self.FILE.close()
         self.create_hidden_word(self.mk_string(self.word_to_guess, ""))
         while not self.game_complete:
+            os.system('clear')
             self.play_game()
         play_again = raw_input("Play again? (y/n)\n> ").lower()
         if play_again == "y":
