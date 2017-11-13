@@ -1,5 +1,6 @@
 import os
 
+
 class Hangman(object):
     input_letter = []
     word_to_guess = []
@@ -66,7 +67,7 @@ class Hangman(object):
 
 
     @staticmethod
-    def mk_string(word, inbetween):
+    def mk_string(word, inbetween=""):
         return inbetween.join(word)
 
 
@@ -97,13 +98,13 @@ class Hangman(object):
                 self.print_hidden_word()
                 self.print_wrong_guesses()
                 print "You lose!"
-                print "Correct word: " + self.mk_string(self.word_to_guess, "")
+                print "Correct word: " + self.mk_string(self.word_to_guess)
                 self.game_complete = True
         else:
             self.print_hanged_man()
             self.print_hidden_word()
             print "Congratulations, you win! Your word was \"%s\". It took you %d guesses to win."\
-                  % (self.mk_string(self.word_to_guess, ""), self.number_of_guesses)
+                  % (self.mk_string(self.word_to_guess), self.number_of_guesses)
             self.game_complete = True
 
 
@@ -116,12 +117,12 @@ class Hangman(object):
 
 
     def check_player_guess(self, guess):
-        if guess not in self.mk_string(self.word_to_guess, ""):
+        if guess not in self.mk_string(self.word_to_guess):
             self.count += 1
             self.wrong_guesses.append(guess)
         else:
-            for letter in range(0, len(self.mk_string(self.word_to_guess, ""))):
-                if self.mk_string(self.word_to_guess, "")[letter] == guess:
+            for letter in range(0, len(self.mk_string(self.word_to_guess))):
+                if self.mk_string(self.word_to_guess)[letter] == guess:
                     self.mutable_hidden_word[letter] = guess
 
     def print_hidden_word(self):
