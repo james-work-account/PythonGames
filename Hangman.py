@@ -4,7 +4,8 @@ import os
 class Hangman(object):
     input_letter = []
     word_to_guess = []
-    DICTIONARY = "wordlist.txt"
+    DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+    DICTIONARY = os.path.join(DIR_PATH, "wordlist.txt")
     FILE = open(DICTIONARY, "r")
     list_of_words = []
     mutable_hidden_word = []
